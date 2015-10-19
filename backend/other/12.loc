@@ -1,0 +1,6 @@
+location /a {
+    return 301 http://www.hotmail.com;
+}
+location /jjj {
+    return 301 http://www.dddd.com;;
+}

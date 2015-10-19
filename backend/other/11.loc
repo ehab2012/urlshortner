@@ -1,0 +1,5 @@
+# shortURL
+# Long URL
+        location /a {
+               return 301 http://www.hotmail.com;
+        }

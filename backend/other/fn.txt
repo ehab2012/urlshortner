@@ -1,0 +1,11 @@
+pip install python-nginx
+
+c=nginx.loadf('/home/ehab/mnts/codearea/urlshortnert/flaurl/other/11.loc')
+s=nginx.Location('/jjj',nginx.Key('return','301 http://www.dddd.com;'))
+c.add(s)
+nginx.dumpf(c, '/home/ehab/mnts/codearea/urlshortnert/flaurl/other/12.loc')
+
+
+import base64
+file_name_string = base64.urlsafe_b64encode(your_string)  
+# use as filename

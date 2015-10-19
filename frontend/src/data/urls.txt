@@ -1,0 +1,19 @@
+{
+    "data": [
+        [
+            "etest.com/12","http://62.61.87.26:10071/tail.html",""
+        ],
+        [
+            "etest.com/13","http://62.61.87.26:10070/#/home",""
+        ],
+        [
+            "etest.com/14","http://62.61.87.26/","main portal site"
+        ],
+        [
+            "etest.com/15","http://80.242.18.212/manager/?username=admin&password=admin#adminview",""
+        ],
+        [
+            "etest.com/16","http://80.242.18.212/manager/#",""
+        ]
+	]
+}	

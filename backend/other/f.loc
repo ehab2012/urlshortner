@@ -1,0 +1,5 @@
+# short URL
+# long URL
+location /jjj {
+    return 301 http://www.dddd.com;;
+}
