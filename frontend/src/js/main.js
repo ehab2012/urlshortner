@@ -6,16 +6,43 @@ $(document).ready(function() {
         })
     });
 
+    $('#longurl').keypress(function(e){
+        if (e.which == 13){
+            $("#save_post").click();
+        }
+    });
 
     var table = $('#example').DataTable( {
         "ajax": "data/urls.txt",
+		"columns": [
+			{ "data": "short" },
+			{ "data": "long" },
+			{ "data": "notes" }
+		],
         "columnDefs": [ {
             "targets": 0,
             "render": function ( data, type, full, meta ) {
                 return '<a target="_blank" href="http://'+ data + '">' + data + '</a>';
             }
-        } ]
+        } , {
+			"targets": 2,
+			"render": function (data, type, full, meta) {
+				return '<a href="#" data-pk="' +Math.floor((Math.random() * 100) + 1)+ '">Mik1e</a>'
+
+				$(this).editable({
+					url: '/post',
+					title: 'Enter username'
+				});
+
+			}
+		}
+		]
     } );
+
+
+
+
+
 
     $('#example tbody').on( 'click', 'td', function () {
         var column_num = parseInt( $(this).index() );
@@ -33,10 +60,29 @@ $(document).ready(function() {
     } );
 
 
+	$('#longurl').keypress(function (e) {
+		var key = e.which;
+		if(key == 13)  // the enter key code
+		{
+			alert("hhhh");
+			return false;
+		}
+	});
 
-    $('#longurl').focus();
+	$('#longurl').focus();
+
+
+/*	$('#example tbody a').editable({
+		type: 'text',
+		name: 'username',
+		url: '/post',
+		title: 'Enter username'
+	});
+
+*/
 
 });
+
 
 
 $('form').validator().on('submit', function (e) {
