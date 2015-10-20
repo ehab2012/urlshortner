@@ -24,9 +24,9 @@
             padding-bottom: 20px;
         }
     </style>
+
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet"
-          href="http://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css">
 
     <link rel="stylesheet" href="css/main.css">
 
@@ -47,17 +47,21 @@
         </div>
         <div class="panel-body">
 
+
             <form id="mform" role="form" data-toggle="validator" method="POST">
 
                 <div class="form-group">
                     <label for="longurl">Long URL</label>
-                    <input type="text" class="form-control" id="longurl" name="longurlA"
+                    <input type="text" class="form-control" id="longurl"
                            placeholder="enter the long url" data-minlength="5" required>
                 </div>
 
+
+
                 <div class="form-group">
-                    <button id="generateUrl" type="submit" class="btn btn-default" data-loading-text="Generating...">Generate
-                    </button>
+                    <div class="col-md-9 col-md-offset-3">
+                    <button type="submit" class="btn btn-default" data-loading-text="Generating...">Generate</button>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -80,7 +84,8 @@
             Stored&nbsp;Urls</h3>
         </div>
         <div class="panel-body">
-        <table id="example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+            <button id="button">Row count</button>
+        <table id="example" class="table table-bordered" width="100%" cellspacing="0">
             <thead>
             <tr>
                 <th>Short Url</th>
@@ -105,20 +110,6 @@
         </div>
     </div>
 
-    <!-- datatables ends -->
-
-    <!--
-        <div>
-            <span>Username:</span>
-            <a href="#" id="username" data-type="text" data-placement="right" data-title="Enter username">superuser</a>
-        </div>
-
-        <div>
-            <span>Status:</span>
-            <a href="#" id="status"></a>
-        </div>
-    -->
-
 </div>
 
 
@@ -132,6 +123,8 @@
 <script src="js/vendor/dataTables.bootstrap.min.js"></script>
 
 <script src="js/plugins.js"></script>
+<script src="js/apimock.js"></script>
+
 <script src="js/main.js"></script>
 </body>
 </html>

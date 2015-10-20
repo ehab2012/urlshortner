@@ -1,57 +1,36 @@
-$.mockjax(function( requestSettings ) {
-
-    // Here is our manual URL matching...
-    if ( requestSettings.url === "/api/beer/random" ) {
-        console.log("------------------------",requestSettings);
-        // We have a match, so we return a response callback...
-        return {
-            response: function( origSettings ) {
-
-                // now we check the request headers, which may be set directly
-                // on the xhr object through an ajaxSetup() call or otherwise:
-
-                // requestSettings.headers["Authentication"] === "some-token"
-                if ( 1 ) {
-                    this.responseText = {shorturl : "short_" + requestSettings.data["longurl"]} //{ user: { id: 13 } };
-                    this.status = 200;
-                } else {
-                    this.status = 403;
-                    this.responseText = "You are not authorized";
-                }
-            }
-        };
-    }
-    // If you get here, there was no url match
-    return;
-});
-
-/*
-$.mockjax({
-    url: "/api/beer/random",
-    responseText: {
-        shorturl : "the short url"
-    },
-    status: 201
-
-});*/
-
 $(document).ready(function() {
 
     $('#output_fake').click(function(e) {
         $(this).keypress(function(e){
             e.preventDefault();
         })
-
     });
 
-    $('#example').DataTable( {
+
+    var table = $('#example').DataTable( {
         "ajax": "data/urls.txt"
     } );
 
+    $('#example tbody').on( 'click', 'tr', function () {
+        $(this).toggleClass('warning');
+    } );
+
+    $('#button').click( function () {
+        alert( table.rows('.highlight').data().length +' row(s) selected' );
+    } );
+
+
+
     $('#longurl').focus();
 
-    // process the form
-    $('form').submit(function(event) {
+});
+
+
+$('form').validator().on('submit', function (e) {
+	if (e.isDefaultPrevented()) {
+		// handle the invalid form...
+
+	} else {
 
         // get the form data
         // there are many ways to get this data using jQuery (you can use the class or id also)
@@ -74,7 +53,7 @@ $(document).ready(function() {
                 // log data to the console so we can see
                 console.log(data);
 
-              //  $.mockjax.clear();
+                //  $.mockjax.clear();
                 $('#output_fake').select();
                 $('#output_fake').focus();
                 $('#output_fake').val(data.shorturl);
@@ -87,7 +66,7 @@ $(document).ready(function() {
                 // best to remove for production
                 console.log(data);
 
-               // $.mockjax.clear();
+                // $.mockjax.clear();
                 $('#output_fake').select();
                 $('#output_fake').focus();
                 $('#output_fake').val("error occured");
@@ -95,18 +74,6 @@ $(document).ready(function() {
 
         // stop the form from submitting the normal way and refreshing the page
         event.preventDefault();
-
-    });
-
-
-});
-
-
-$('form').validator().on('submit', function (e) {
-
-	if (e.isDefaultPrevented()) {
-		// handle the invalid form...
-	} else {
 
 	}
 })

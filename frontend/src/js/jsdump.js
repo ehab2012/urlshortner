@@ -82,6 +82,6 @@ $(document1).ready(function() {
     return false; // avoid to execute the actual submit of the form.
 
 
-    */
+
 });
 

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-editable.css">
+
+
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.9/css/dataTables.bootstrap.min.css">
+
+    <link rel="stylesheet" href="../css/main.css">
+
+</head>
+<body>
+
+
+
+<form data-toggle="validator" role="form"  method="POST">
+    <div class="form-group">
+        <label for="inputName" class="control-label">Name</label>
+        <input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" required>
+    </div>
+    <div class="form-group">
+        <div class="col-md-9 col-md-offset-3">
+            <button type="submit" class="btn btn-default">Validate</button>
+        </div>
+    </div>
+</form>
+
+
+<p id="m"></p>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+<script src="../js/vendor/jquery.dataTables.min.js"></script>
+<script src="../js/vendor/dataTables.bootstrap.min.js"></script>
+
+<script src="../js/plugins.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#m').text(Math.random());
+        $('#inputName').focus();
+    });
+</script>
+
+
+</body>
+</html>
