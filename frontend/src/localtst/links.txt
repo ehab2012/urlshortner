@@ -1,0 +1,35 @@
+https://developers.google.com/url-shortener/v1/getting_started
+
+uwsgi
+	https://uwsgi-docs.readthedocs.org/en/latest/Install.html
+	
+	https://gist.github.com/JanJakes/7124076
+	
+	
+ui
+	https://vitalets.github.io/x-editable/	
+
+----------------------------	
+other api's	
+
+http://ticurl.cwlamb.com/?api
+
+https://developers.google.com/url-shortener/v1/getting_started
+http://ticurl.com/?api
+
+
+
+http://flask.pocoo.org/docs/0.10/quickstart/#routing
+http://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
+https://github.com/JackStouffer/Flask-Foundation
+http://www.fullstackpython.com/flask.html
+
+https://www.digitalocean.com/community/tutorials/how-to-deploy-python-wsgi-applications-using-uwsgi-web-server-with-nginx
+https://www.digitalocean.com/community/tutorials/how-to-deploy-flask-web-applications-using-uwsgi-behind-nginx-on-centos-6-4
+https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+
+
+
+https://github.com/llvm-mirror/zorg/blob/master/llvmlab/llvmlab/ui/app.py
+
+
