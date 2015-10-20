@@ -88,14 +88,15 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+html * {
+    outline: 0 !important;
+}
+
+
 body{
     background-color: #cccccc;
 }
 
-
-.ff{
-    background-color: red;
-}
 
 
 

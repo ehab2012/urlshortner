@@ -8,15 +8,28 @@ $(document).ready(function() {
 
 
     var table = $('#example').DataTable( {
-        "ajax": "data/urls.txt"
+        "ajax": "data/urls.txt",
+        "columnDefs": [ {
+            "targets": 0,
+            "render": function ( data, type, full, meta ) {
+                return '<a target="_blank" href="http://'+ data + '">' + data + '</a>';
+            }
+        } ]
     } );
 
-    $('#example tbody').on( 'click', 'tr', function () {
-        $(this).toggleClass('warning');
+    $('#example tbody').on( 'click', 'td', function () {
+        var column_num = parseInt( $(this).index() );
+        //var row_num = parseInt( $(this).parent().index() )+1;
+        if(column_num===1) {
+            $(this).closest('tr').toggleClass('warning');
+            $("#delBtn").prop("disabled", (table.rows('.warning').data().length === 0));
+        }
     } );
 
-    $('#button').click( function () {
-        alert( table.rows('.highlight').data().length +' row(s) selected' );
+    $('#delBtn').click( function () {
+        //alert((table.rows('.warning').data().length>0));
+        var table = $('#example').DataTable();
+        table.rows('.warning').remove().draw( false );
     } );
 
 
