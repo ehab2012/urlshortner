@@ -92,20 +92,39 @@ html * {
     outline: 0 !important;
 }
 
-
 body{
+    padding-top: 20px;
+    padding-bottom: 20px;
+
     background-color: #cccccc;
 }
 
+.Lnk{
+
+}
+
+.NoteLnk{
+    color: #d9edf7;
+}
+
+
+/* editor specific */
 .editable-click, a.editable-click, a.editable-click:hover {
     text-decoration: none;
-     border-bottom: dashed 0px #0088cc;
+    border-bottom: none 0px;
 }
 
-.addNote{
-    color: #d9edf7;
-
+/*
+.editable-container.editable-inline,
+.editable-container.editable-inline .control-group.form-group,
+.editable-container.editable-inline .control-group.form-group .editable-input,
+.editable-container.editable-inline .control-group.form-group .editable-input textarea,
+.editable-container.editable-inline .control-group.form-group .editable-input select,
+.editable-container.editable-inline .control-group.form-group .editable-input input:not([type=radio]):not([type=checkbox]):not([type=submit])
+{
+    width: 500px;
 }
+*/
 
 
 
