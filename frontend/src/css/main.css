@@ -97,6 +97,15 @@ body{
     background-color: #cccccc;
 }
 
+.editable-click, a.editable-click, a.editable-click:hover {
+    text-decoration: none;
+     border-bottom: dashed 0px #0088cc;
+}
+
+.addNote{
+    color: #d9edf7;
+
+}
 
 
 

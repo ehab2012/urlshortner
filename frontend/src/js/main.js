@@ -12,6 +12,8 @@ $(document).ready(function() {
         }
     });
 
+
+
     var table = $('#example').DataTable( {
         "ajax": "data/urls.txt",
 		"columns": [
@@ -21,25 +23,44 @@ $(document).ready(function() {
 		],
         "columnDefs": [ {
             "targets": 0,
-            "render": function ( data, type, full, meta ) {
+            "render": function ( data, type, row ) {
                 return '<a target="_blank" href="http://'+ data + '">' + data + '</a>';
             }
         } , {
 			"targets": 2,
-			"render": function (data, type, full, meta) {
-				return '<a href="#" data-pk="' +Math.floor((Math.random() * 100) + 1)+ '">Mik1e</a>'
+			"render": function (data, type, row) {
+                noteStr= row["notes"];
 
-				$(this).editable({
-					url: '/post',
-					title: 'Enter username'
-				});
+                var newLink = $("<a />", {
+                    "id" : row["short"],
+                    href : "#",
+                    "data-pk" : row["short"],
+                    "data-type" : "text"
+                });
+
+                if(noteStr.length==0)
+                {
+                    noteStr="click to add note";
+                    $(newLink).addClass('editable addNote');  // editable-click inline-input
+                }
+
+                $(newLink).text(noteStr);
+                return $(newLink).prop('outerHTML');
 
 			}
 		}
-		]
+		],
+        "initComplete": function () {
+            //$.fn.editable.defaults.mode = 'inline';
+            $('#example .addNote').editable({
+                type: 'text',
+                url: '/post',
+                placement: 'top',
+                title: 'Enter text'
+            });
+        },
+
     } );
-
-
 
 
 
@@ -55,8 +76,10 @@ $(document).ready(function() {
 
     $('#delBtn').click( function () {
         //alert((table.rows('.warning').data().length>0));
+
         var table = $('#example').DataTable();
         table.rows('.warning').remove().draw( false );
+
     } );
 
 
@@ -71,15 +94,6 @@ $(document).ready(function() {
 
 	$('#longurl').focus();
 
-
-/*	$('#example tbody a').editable({
-		type: 'text',
-		name: 'username',
-		url: '/post',
-		title: 'Enter username'
-	});
-
-*/
 
 });
 
