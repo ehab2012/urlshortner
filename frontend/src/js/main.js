@@ -12,13 +12,21 @@ $(document).ready(function () {
         "ajax": "data/urls.txt",
         "columns": [
                     {"data": "short"},
-                    {"data": "long"},
-                    {"data": "notes"}
+                    {"data": "long"}
                     ],
         "columnDefs": [
                     {   "targets": 0,
                         "render": function (data, type, row) {
-                            return '<a target="_blank" href="http://' + data + '">' + data + '</a>';
+
+                            var newLink = $("<a />", {
+                                "id": row["short"],
+                                "target" : "_blank",
+                                "href" : "//" + data ,
+                                "html" : data
+                            });
+
+                            return $(newLink).prop('outerHTML');
+
                         }
                     },
                     {   "targets": 1,
@@ -31,38 +39,9 @@ $(document).ready(function () {
 
                             return $(newLink).prop('outerHTML');
                         }
-                    },
-
-                    {   "targets": 2,
-                        "render": function (data, type, row) {
-                            noteStr = row["notes"];
-
-                            var newLink = $("<a />", {
-                                "id": row["short"],
-                                href: "#",
-                                "data-pk": row["short"],
-                                "data-type": "text"
-                            });
-
-                            if (noteStr.length == 0) {
-                                noteStr = "click to add note";
-                                $(newLink).addClass('editable Lnk NoteLnk');  // editable-click inline-input
-                            }
-
-                            $(newLink).text(noteStr);
-                            return $(newLink).prop('outerHTML');
-                        }
                     }
                     ],
-        "initComplete": function () {
-                    //$.fn.editable.defaults.mode = 'inline';
-                    $('#table_dataTables .Lnk').editable({
-                        type: 'text',
-                        url: '/post',
-                        placement: 'top',
-                        title: 'Enter text'
-                    });
-                }
+        "initComplete": function () {    }
     });
 
 
@@ -78,13 +57,54 @@ $(document).ready(function () {
 
     $('#delBtn').click(function () {
         //alert((table.rows('.warning').data().length>0));
-
         var table = $('#table_dataTables').DataTable();
         table.rows('.warning').remove().draw(false);
-
     });
 
-
     $('#longurl').focus();
+
+
+    $("#fromUrl").submit(function(event) {
+        event.preventDefault();
+
+        var formData = {
+            'longurl': $('#longurl').val(),
+        };
+
+        $.ajax({
+            type: "POST",
+            url:  $(this).attr('action'),
+            dataType    : 'json',
+            contentType: 'application/json',
+            encode          : true,
+            data:  formData, // serializes the form's elements.
+            beforeSend:function() {
+                $("#btn_generate").text("Wait...");
+                $("#btn_generate").removeClass("btn-primary");
+                $("#btn_generate").addClass("btn-default");
+            },
+            complete:function() {
+                $("#btn_generate").removeClass("btn-default");
+                $("#btn_generate").addClass("btn-primary");
+
+                $("#btn_generate").text("Generate");
+            },
+            success: function(json) {
+                //  $.mockjax.clear();
+                $("#div_result").removeClass("has-error");
+                $('#input_shortUrl').val(json.shorturl);
+                $('#input_shortUrl').focus();
+                $('#input_shortUrl').select();
+                },
+            error: function(json) {
+                //  $.mockjax.clear();
+                $("#div_result").addClass("has-error");
+                $('#input_shortUrl').val(json.responseText);
+                console.dir(json);
+            }
+        });
+
+        return false; // avoid to execute the actual submit of the form.
+    });
 
 });
