@@ -13,7 +13,7 @@ $(document).ready(function () {
         "columns": [
                     {"data": "short"},
                     {"data": "long"},
-                   // {"data": "notes"}
+                    {"data": "notes"}
                     ],
         "columnDefs": [
                     {   "targets": 0,
