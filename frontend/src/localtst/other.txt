@@ -70,3 +70,25 @@ $('form').validator().on('submit', function (e) {
 		}
 	});
 */
+
+-----------------------
+
+d = document.createElement('div');
+$(d).addClass(classname)
+    .html(text)
+    .appendTo($("#myDiv")) //main div
+.click(function () {
+    $(this).remove();
+})
+    .hide()
+    .slideToggle(300)
+    .delay(2500)
+    .slideToggle(300)
+    .queue(function () {
+    $(this).remove();
+});
+
+                            //return '<a target="_blank" class="editable Lnk" href="http://' + data + '">' + data + '</a>';
+                            // data-mode="inline"
+                            // contenteditable
+                            // <p ondblclick="this.contentEditable=true;this.className='inEdit';" onblur="this.contentEditable=false;this.className='';" contenteditable="false" class="">Tasegin editing.</p>

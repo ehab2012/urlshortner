@@ -13,7 +13,7 @@ $(document).ready(function () {
         "columns": [
                     {"data": "short"},
                     {"data": "long"},
-                    {"data": "notes"}
+                   // {"data": "notes"}
                     ],
         "columnDefs": [
                     {   "targets": 0,
@@ -23,8 +23,13 @@ $(document).ready(function () {
                     },
                     {   "targets": 1,
                         "render": function (data, type, row) {
-                            return '<a target="_blank" contenteditable class="editable Lnk" href="http://' + data + '">' + data + '</a>';
-                            // data-mode="inline"
+
+                            var newLink = $("<div />", {
+                                "id": row["short"],
+                                "html" : data
+                            });
+
+                            return $(newLink).prop('outerHTML');
                         }
                     },
 
