@@ -65,29 +65,35 @@ $("#fromUrl").submit(function(event) {
         encode          : true,
         data:  formData, // serializes the form's elements.
         beforeSend:function() {
-            $("#btn_generate").text("Wait...");
-            $("#btn_generate").removeClass("btn-primary");
-            $("#btn_generate").addClass("btn-default");
+            $('#btn_generate').button('loading');
         },
         complete:function() {
-            $("#btn_generate").removeClass("btn-default");
-            $("#btn_generate").addClass("btn-primary");
-
-            $("#btn_generate").text("Generate");
+            $('#btn_generate').button('reset');
         },
         success: function(json) {
             //  $.mockjax.clear();
             addShortUrl(json);
-            $("#div_result").removeClass("has-error");
+
+            $('#btn_generate').button('reset');
+            setTimeout(function() {
+                $(".alert-success").slideUp()
+            }, 2000);
+            $(".alert-success").slideDown();
+
+            //$("#div_result").removeClass("has-error");
             $('#input_shortUrl').val(json.shorturl);
             $('#input_shortUrl').focus();
             $('#input_shortUrl').select();
         },
         error: function(json) {
             //  $.mockjax.clear();
-            $("#div_result").addClass("has-error");
+            //$("#div_result").addClass("has-error");
             $('#input_shortUrl').val(json.responseText);
-            console.dir(json);
+            setTimeout(function() {
+                $(".alert-danger").slideUp()
+            }, 2000);
+            $(".alert-danger").slideDown();
+asdadasd
         }
     });
 
@@ -155,26 +161,34 @@ function DeleteUrls()
         return;
 
     $.ajax({
-        type: "GET",
+        type: "DELETE",
         url:  'ulr/delete',
         dataType    : 'json',
         contentType: 'application/json',
         encode          : true,
         data:  JSON.stringify(arr_tmpDel), // serializes the form's elements.
         beforeSend:function() {
-            $("#btn_deleteUrl").text("Wait...");
+            $('#btn_deleteUrl').button('loading');
         },
         complete:function() {
-            $("#btn_deleteUrl").text("delete");
+            $('#btn_deleteUrl').button('reset');
         },
         success: function(json) {
             //  $.mockjax.clear();
-            // console.log(json.fortune);
-            table.rows('.warning').remove().draw(false);
 
+            setTimeout(function() {
+                $(".alert-success").slideUp()
+            }, 2000);
+
+            $(".alert-success").slideDown();
+            table.rows('.warning').remove().draw(false);
         },
         error: function(json) {
             //  $.mockjax.clear();
+            setTimeout(function() {
+                $(".alert-danger").slideUp()
+            }, 2000);
+            $(".alert-danger").slideDown();
         }
     });
 

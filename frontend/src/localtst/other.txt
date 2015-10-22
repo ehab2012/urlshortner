@@ -92,3 +92,12 @@ $(d).addClass(classname)
                             // data-mode="inline"
                             // contenteditable
                             // <p ondblclick="this.contentEditable=true;this.className='inEdit';" onblur="this.contentEditable=false;this.className='';" contenteditable="false" class="">Tasegin editing.</p>
+
+----------------------
+
+         /*   $("#btn_generate").text("Wait...");
+            $("#btn_generate").removeClass("btn-primary");
+            $("#btn_generate").addClass("btn-default");
+        */
+
+--------------------------------

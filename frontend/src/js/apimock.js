@@ -11,7 +11,7 @@ jQuery(function () {
 					// on the xhr object through an ajaxSetup() call or otherwise:
 
 					// requestSettings.headers["Authentication"] === "some-token"
-					if (1) {
+					if (0) {
 						this.dataType = "json",
 						this.contentType = "text/json",
 							//this.proxy= '/mocks/data.json',  // returns json file
@@ -40,7 +40,7 @@ jQuery(function () {
 
     $.mockjax({
         url: "ulr/delete",
-        type :"DELETE",
+        type :"GET",
         responseText: {
             status: "success",
             fortune: "Are you a mock turtle?"
@@ -49,7 +49,8 @@ jQuery(function () {
 
     $.mockjax({
         url: "ulr/delete",
-        type :"GET",
+        type :"DELETE",
+        status: 404,
         responseText: {
             status: "success",
             fortune: "gets the thingy"
