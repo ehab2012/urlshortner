@@ -93,7 +93,7 @@ $("#fromUrl").submit(function(event) {
                 $(".alert-danger").slideUp()
             }, 2000);
             $(".alert-danger").slideDown();
-asdadasd
+
         }
     });
 
