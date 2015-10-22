@@ -11,7 +11,7 @@ jQuery(function () {
 					// on the xhr object through an ajaxSetup() call or otherwise:
 
 					// requestSettings.headers["Authentication"] === "some-token"
-					if (0) {
+					if (1) {
 						this.dataType = "json",
 						this.contentType = "text/json",
 							//this.proxy= '/mocks/data.json',  // returns json file
@@ -32,7 +32,6 @@ jQuery(function () {
 				}
 			};
 		}
-
 		// If you get here, there was no url match
 		return;
 	});
