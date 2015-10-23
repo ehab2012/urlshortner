@@ -1,3 +1,6 @@
+// api url definations
+APIURL="http://localhost:5000/urlshortener/api/urls"
+
 $(document).ready(function () {
 
     // datatable related
@@ -59,7 +62,7 @@ $("#fromUrl").submit(function(event) {
 
     $.ajax({
         type: "POST",
-        url:  $(this).attr('action'),
+        url:  APIURL, //$(this).attr('action'),
         dataType    : 'json',
         contentType: 'application/json',
         encode          : true,
@@ -162,11 +165,11 @@ function DeleteUrls()
 
     $.ajax({
         type: "DELETE",
-        url:  'ulr/delete',
+        url:  APIURL,
         dataType    : 'json',
         contentType: 'application/json',
         encode          : true,
-        data:  JSON.stringify(arr_tmpDel), // serializes the form's elements.
+        data: JSON.stringify(arr_tmpDel), // serializes the form's elements.
         beforeSend:function() {
             $('#btn_deleteUrl').button('loading');
         },
