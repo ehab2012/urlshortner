@@ -3,7 +3,7 @@ jQuery(function () {
 	$.mockjax(function (requestSettings) {
 
 		// Here is our manual URL matching...
-		if (requestSettings.url === "url/generate" && requestSettings.type === "POST") {
+		if (requestSettings.url === APIURL && requestSettings.type === "POST") {
 
 			return {
 				response: function (origSettings) {
@@ -18,7 +18,7 @@ jQuery(function () {
 							//  isTimeout: true
 						this.responseTime= 750,  // make them wait
 						this.responseText = {
-                                shorturl: "etest.com/" + Math.floor((Math.random() * 100) + 1),
+                                shorturl: SHORTURL + Math.floor((Math.random() * 100) + 1),
                                 longurl :requestSettings.data["longurl"],
                                 user: { id: 13 }
                             },
@@ -38,7 +38,7 @@ jQuery(function () {
 
 
     $.mockjax({
-        url: "ulr/delete",
+        url: APIURL,
         type :"GET",
         responseText: {
             status: "success",
@@ -47,7 +47,7 @@ jQuery(function () {
     });
 
     $.mockjax({
-        url: "ulr/delete",
+        url: APIURL,
         type :"DELETE",
         status: 404,
         responseText: {

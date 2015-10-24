@@ -1,5 +1,7 @@
 // api url definations
-APIURL="http://localhost:5000/urlshortener/api/urls"
+//APIURL="http://localhost:5000/urlshortener/api/urls"
+APIURL="urlshortener/api/urls"
+SHORTURL="http://l.tryme.xyz/"
 
 $(document).ready(function () {
 
