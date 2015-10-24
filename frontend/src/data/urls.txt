@@ -3,7 +3,7 @@
     {
       "short": "etest.com/12",
       "long": "http://62.61.87.26:10071/tail.html",
-      "notes": ""
+      "notes": "aa2"
     },
     {
       "short": "etest.com/13",
@@ -23,7 +23,7 @@
     {
       "short": "etest.com/16",
       "long": "http://80.242.18.212/manager/#",
-      "notes": ""
+      "notes": "111"
     },
     {
       "short": "etest.com/12",
@@ -33,7 +33,7 @@
     {
       "short": "etest.com/13",
       "long": "http://62.61.87.26:10070/#/home",
-      "notes": ""
+      "notes": "111"
     },
     {
       "short": "etest.com/14",
@@ -73,8 +73,7 @@
     {
       "short": "etest.com/END2",
       "long": "http://80.242.18.212/manager/#",
-      "notes": ""
+      "notes": "fff"
     }
-    
     ]
 }
