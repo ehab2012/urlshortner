@@ -1,0 +1,3 @@
+sudo incrontab -e
+
+/var/www/scripts/urlshortner/location_configs IN_MODIFY,IN_CREATE,IN_DELETE /var/www/scripts/urlshortner/syncNreload.sh
