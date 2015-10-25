@@ -1,5 +1,6 @@
 // api url definations
-APIURL = "http://127.0.0.1:5000/api/urls"
+//APIURL = "http://127.0.0.1:5000/api/urls"
+APIURL = "http://l.tryme.xyz/api/urls"
 //APIURL="/api/urls"
 SHORTURLDOMAIN = "http://l.tryme.xyz/"
 
