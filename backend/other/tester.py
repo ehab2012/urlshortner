@@ -3,6 +3,7 @@ import nginx
 import uuid
 # sudo pip install shortuuid
 import shortuuid
+import random
 from tinydb import TinyDB, where
 
 #c = nginx.Conf()
@@ -38,14 +39,25 @@ mdict = dict((item['short'], item) for item in json_data["data"])
 print mdict.has_key("etest.co1m/14")
 
 db = TinyDB('/home/ehab/mnts/codearea/urlshortner/frontend/src/data/db.json')
+#db.purge_tables()
 table = db.table('data')
+"""
 l= {
       "short": "etest.com/13",
       "long": "http://62.61.87.26:10071/tail.html",
       "notes": "aa2"
     };
 c=table.insert(l)
-print c
+"""
+
+for num in range(10,20):
+    l={ "x" : num }
+    c=table.insert(l)
+
+print str(random.randint(1,1000)) + random.choice('ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz') 
+print table.all()
+
+db.close()
 
 # not working
 #lKey = [key for key, value in output_json.iteritems() if value == "etest.com/14"]

@@ -49,8 +49,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="longurl" pattern=".{5,}" title="5 characters minimum"
-                                   placeholder="enter the long url" spellcheck="false" required>
+                            <input type="text" class="form-control" id="longurl" pattern="^http.{5,255}" title="must start with http and not less than 5 chars"
+                                   placeholder="enter the long url" spellcheck="false" value="http://" onfocus="this.value = this.value;" required>
                               <span class="input-group-btn">
                                 <button class="btn btn-primary" id="btn_generate" type="submit" autocomplete="off"
                                         data-loading-text="Wait...">Generate</button>
@@ -135,7 +135,9 @@
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
 
+<!--
 <script src="js/apimock.js"></script>
+-->
 
 </body>
 </html>
