@@ -1,6 +1,6 @@
 // api url definations
-//APIURL = "http://127.0.0.1:5000/api/urls"
-APIURL = "http://l.tryme.xyz/api/urls"
+APIURL = "http://127.0.0.1:5000/api/urls"
+//APIURL = "http://l.tryme.xyz/api/urls"
 //APIURL="/api/urls"
 SHORTURLDOMAIN = "http://l.tryme.xyz/"
 
@@ -139,7 +139,6 @@ $('#btn_deleteUrl').click(function () {
 
 // add shorturl to datatable
 function addShortUrl(json) {
-	console.log(json);
 	var t = $('#table_dataTables').DataTable();
 	t.row.add({
 		"short": json.data[0].short,
@@ -163,13 +162,15 @@ function DeleteUrls() {
 	if (arr_tmpDel.length === 0)
 		return;
 
-	console.log(arr_tmpDel);
-	
+    $("#fromUrl").trigger('reset');
+
 	$.ajax({
-		type: "DELETE",
-		url: APIURL + "?urls="+JSON.stringify(arr_tmpDel),
+		type: "POST",
+		url: APIURL + "/delete",
 		encode: true,
-		//data: , // serializes the form's elements.
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+		data: JSON.stringify(arr_tmpDel), // serializes the form's elements.
 		beforeSend: function () {
 			$('#btn_deleteUrl').button('loading');
 		},

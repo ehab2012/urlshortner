@@ -11,6 +11,8 @@ CORS(app)
 
 # API constants
 LOCATION_DIR = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'location_configs'))
+if not os.path.exists(LOCATION_DIR):
+    os.makedirs(LOCATION_DIR)
 
 m = myModel(LOCATION_DIR)
 
@@ -31,16 +33,10 @@ def AddUrl():
         abort(400)
     return resp, status_code
 
-@app.route('/api/urls/<urls>', methods=['DELETE'])
-def DeleteUrls(urls):
-    resp={}
-    if len(urls)==0:
-        print "urls=0"
-        abort(400)
-    resp,status_code = m.DeleteUrls(urls)
-    if status_code == 400: #  status.HTTP_204_NO_CONTENT
-        abort(400)
-    return resp, status_code
+@app.route('/api/urls/delete', methods=['POST'])
+def DeleteUrls():
+    status_code = m.DeleteUrls(request.data)
+    return str(status_code)
 
 @app.errorhandler(404)
 def not_found(error):

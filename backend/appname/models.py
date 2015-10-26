@@ -76,15 +76,13 @@ class myModel:
         return (tmpObj.to_JSON(),status_code)
 
     def DeleteUrls(self,reqData):
-        status_code=400
+        status_code=200
         for url in eval(request.data):
-            uuidUrl= shortuuid.uuid(name=url)
+            uuidUrl= shortuuid.uuid(name=str(url))
             filename=os.path.join(os.path.sep, myModel.dirPath , uuidUrl)
-            print filename
             if os.path.exists(filename):
-                status_code = 204
                 os.remove(filename)
-        return ({},status_code)
+        return status_code
 
 # jsonify({'data': os.listdir(dirPath)});
 
