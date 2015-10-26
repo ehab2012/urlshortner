@@ -1,2 +1,0 @@
-- after delete disable the delelet button
-- clear the entry fields after delete
