@@ -1,50 +1,68 @@
 // api url definations
 APIURL = "http://127.0.0.1:5000/api/urls"
 //APIURL = "http://l.tryme.xyz/api/urls"
-//APIURL="/api/urls"
+DATAURL="../data"
 SHORTURLDOMAIN = "http://l.tryme.xyz/"
 
 $(document).ready(function () {
 
-	var table = $('#table_dataTables').DataTable({
-		"ajax": APIURL,
-		"columns": [
-			{"data": "short"},
-			{"data": "long"}
-		],
-		"columnDefs": [
-			{
-				"targets": 0,
-				"render": function (data, type, row) {
+    $.ajax({
+        type: "GET",
+        url: APIURL + "/isAlive",
+        success: function(data){
+            $("#btn_generate").prop("disabled", false);
+            jQuery('#div_deletebtn').css("display","block");
+        },
+        error: function (data) {
+            //console.log("error");
+            $("#div_backendOffline").slideDown();
+        }
+    });
 
-					var newLink = $("<a />", {
-						"id": row["short"],
-						"target": "_blank",
-						"href": SHORTURLDOMAIN + data,
-						"html": data
-					});
-					return $(newLink).prop('outerHTML');
-				}
-			},
-			{
-				"targets": 1,
-				"render": function (data, type, row) {
-
-					var newLink = $("<div />", {
-						"id": row["short"],
-						"html": data
-					});
-					return $(newLink).prop('outerHTML');
-				}
-			}
-		],
-		"initComplete": function () {
-			// when we are ready lets focus
-			$('#longurl').focus();
-		}
-	});
-
+    getUrls();
 });
+
+
+function getUrls()
+{
+    var table = $('#table_dataTables').DataTable({
+        "ajax": APIURL,
+        "columns": [
+            {"data": "short"},
+            {"data": "long"}
+        ],
+        "columnDefs": [
+            {
+                "targets": 0,
+                "render": function (data, type, row) {
+
+                    var newLink = $("<a />", {
+                        "id": row["short"],
+                        "target": "_blank",
+                        "href": SHORTURLDOMAIN + data,
+                        "html": data
+                    });
+                    return $(newLink).prop('outerHTML');
+                }
+            },
+            {
+                "targets": 1,
+                "render": function (data, type, row) {
+
+                    var newLink = $("<div />", {
+                        "id": row["short"],
+                        "html": data
+                    });
+                    return $(newLink).prop('outerHTML');
+                }
+            }
+        ],
+        "initComplete": function () {
+            // when we are ready lets focus
+            $('#input_longurl').focus();
+        }
+    });
+}
 
 
 /// submit part
@@ -52,10 +70,10 @@ $(document).ready(function () {
 $("#fromUrl").submit(function (event) {
 	event.preventDefault();
 
-	formData = '"' + $('#longurl').val() + '"';
+	formData = '"' + $('#input_longurl').val() + '"';
 
 	/* var formData = {
-	 'longurl': $('#longurl').val(),
+	 'input_longurl': $('#input_longurl').val(),
 	 };*/
 	/*
 	 var formData = {
@@ -177,15 +195,21 @@ function DeleteUrls() {
 		complete: function () {
 			$('#btn_deleteUrl').button('reset');
 		},
-		success: function (json) {
-			//  $.mockjax.clear();
+        success: function(json, textStatus, xhr) {
+
+            if(json==404)
+                $(".alert-danger").slideDown();
+            else
+            {
+                $(".alert-success").slideDown();
+                table.rows('.warning').remove().draw(false);
+            }
 
 			setTimeout(function () {
-				$(".alert-success").slideUp()
+				$(".alert-success").slideUp();
+                $(".alert-danger").slideUp();
 			}, 2000);
 
-			$(".alert-success").slideDown();
-			table.rows('.warning').remove().draw(false);
 		},
 		error: function (json) {
 			//  $.mockjax.clear();

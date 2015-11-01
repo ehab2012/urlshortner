@@ -36,6 +36,16 @@
 
 <div class="container">
 
+    <!-- backend is not alive alert -->
+    <div class="alert alert-warning alert-dismissible fade in" style="margin-top: 0px;display: none;" role="alert" id="div_backendOffline">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong>Info!</strong> backend appears to be offile, refresh or try later!
+    </div>
+    <!-- e.backend is not alive alert -->
+
     <!-- url generation area -->
 
     <div class="panel panel-primary">
@@ -49,11 +59,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="input-group">
-                            <input type="text" class="form-control" id="longurl" pattern="^http.{5,255}" title="must start with http and not less than 5 chars"
+                            <input type="text" class="form-control" id="input_longurl" pattern="^http.{5,255}" title="must start with http and not less than 5 chars"
                                    placeholder="enter the long url" spellcheck="false" value="http://" onfocus="this.value = this.value;" required>
                               <span class="input-group-btn">
                                 <button class="btn btn-primary" id="btn_generate" type="submit" autocomplete="off"
-                                        data-loading-text="Wait...">Generate</button>
+                                        data-loading-text="Wait..." disabled>Generate</button>
                               </span>
                         </div>
                     </div>
@@ -84,7 +94,7 @@
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
         </button>
-        <strong>Failed!</strong> operation did not completed successfully.
+        <strong>Failed!</strong> operation did not completed successfully, refresh the page to be updated.
     </div>
     <!-- e.alert area  -->
 
@@ -113,7 +123,7 @@
                 </tbody>
             </table>
 
-            <div class="form-group">
+            <div class="form-group" style="display: none;" id="div_deletebtn">
                 <button id="btn_deleteUrl" type="submit" class="btn btn-default" autocomplete="off"
                         data-loading-text="Wait..."  disabled> delete</button>
             </div>

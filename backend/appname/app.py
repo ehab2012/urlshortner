@@ -16,7 +16,7 @@ if not os.path.exists(LOCATION_DIR):
 
 m = myModel(LOCATION_DIR)
 
-@app.route('/isAlive')
+@app.route('/api/urls/isAlive')
 def isAlive():
     return m.isAlive()
 

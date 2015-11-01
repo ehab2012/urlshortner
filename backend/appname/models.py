@@ -1,6 +1,8 @@
 import os
 import os.path
 import json
+import io
+import glob
 import uuid
 import re
 import random
@@ -10,6 +12,11 @@ from flask import Flask, abort, redirect, jsonify, render_template, request, mak
 class UrlObject:
     def to_JSON(self):
         return json.dumps(self, default=lambda o: o.__dict__)
+
+    def to_JSONFile(self,filename):
+        with open(filename, 'w') as f:
+            json.dump(json.dumps(self, default=lambda o: o.__dict__),f)
+            #json.dump(self.to_JSON().decode('UTF-8'), f)
 
     def to_ShortUUID(longUrl):
         return shortuuid.uuid(name=longUrl)
@@ -51,39 +58,58 @@ class myModel:
     def isAlive(self):
         return "url shorter is alive"
 
-    def getURLs(self):
+    def getURLs(self,savetoFile=0):
         tmpObj= UrlObject()
         tmpObj.data=[]
-        filesList=os.listdir(myModel.dirPath)
+        #filesList=os.listdir(myModel.dirPath)
+        filesList=glob.glob(myModel.dirPath + "/*.loc")
         for f in filesList:
             f=os.path.join(os.path.sep, myModel.dirPath , f)
             tmpObj.data.append(tmpObj.get_details(f))
-        return tmpObj.to_JSON()
+        result = tmpObj.to_JSON()
+        datafile=os.path.join(os.path.sep, myModel.dirPath,"data.txt")
+        tmpObj.to_JSONFile(datafile)
+        return result
 
     def AddURL(self,reqData):
         status_code=400
         longurl=str(eval(reqData))
         uuidUrl= shortuuid.uuid(name=longurl)
-        filename=os.path.join(os.path.sep, myModel.dirPath , uuidUrl)
+        filename=os.path.join(os.path.sep, myModel.dirPath , uuidUrl) + ".loc"
         tmpObj= UrlObject()
         tmpObj.data=[]
+        status_code = 200
         if os.path.exists(filename):
-            status_code = 200
             tmpObj.data.append(tmpObj.get_details(filename))
         else:
-            tmpObj.data.append(tmpObj.add_UrlObject(filename,longurl))
             status_code = 201
+            tmpObj.data.append(tmpObj.add_UrlObject(filename,longurl))
+        myModel.getURLs(self,1)
         return (tmpObj.to_JSON(),status_code)
 
     def DeleteUrls(self,reqData):
-        status_code=200
+        status_code=404
         for url in eval(request.data):
             uuidUrl= shortuuid.uuid(name=str(url))
-            filename=os.path.join(os.path.sep, myModel.dirPath , uuidUrl)
+            print uuidUrl
+            filename=os.path.join(os.path.sep, myModel.dirPath , uuidUrl)  + ".loc" 
             if os.path.exists(filename):
+                status_code = 200
                 os.remove(filename)
         return status_code
 
 # jsonify({'data': os.listdir(dirPath)});
+
+
+
+#        if not os.path.exists(datafile):
+           #savetoFile=1
+        #if savetoFile==1:
+"""
+with io.open(datafile, 'w', encoding='utf-8') as outfile:
+    outfile.write(result)
+"""
+#with open(datafile, 'w') as fp:
+#    json.dump(tmpObj.to_JSON(), fp)
 
 

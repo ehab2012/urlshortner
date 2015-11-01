@@ -1,0 +1,1 @@
+location /503w { return 301 http://ff3333; }
