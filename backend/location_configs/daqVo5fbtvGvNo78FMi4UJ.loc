@@ -1,1 +1,0 @@
-location /61j { return 301 http://sdssds; }

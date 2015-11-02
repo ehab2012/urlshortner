@@ -13,11 +13,6 @@ class UrlObject:
     def to_JSON(self):
         return json.dumps(self, default=lambda o: o.__dict__)
 
-    def to_JSONFile(self,filename):
-        with open(filename, 'w') as f:
-            json.dump(json.dumps(self, default=lambda o: o.__dict__),f)
-            #json.dump(self.to_JSON().decode('UTF-8'), f)
-
     def to_ShortUUID(longUrl):
         return shortuuid.uuid(name=longUrl)
 
@@ -28,7 +23,6 @@ class UrlObject:
             m = re.search('^location\s+/(\w+)\s+\{\s+return\s+\d+\s+(http.*)?;\s+', first_line)
             shorturl=m.group(1) 
             longurl=m.group(2)
-            f.close()
         return {"short" : shorturl , "long" : longurl}
 
     def add_UrlObject(self,filename,longurl):
@@ -39,7 +33,6 @@ class UrlObject:
         locstr="location /" + shorturl + " { return 301 "+ longurl + "; }" # \n
         with open(filename, 'w+') as f:
             f.write(locstr)
-            f.close()
         return {"short" : shorturl , "long" : longurl}
 
 class EError(Exception):
@@ -68,7 +61,9 @@ class myModel:
             tmpObj.data.append(tmpObj.get_details(f))
         result = tmpObj.to_JSON()
         datafile=os.path.join(os.path.sep, myModel.dirPath,"data.txt")
-        tmpObj.to_JSONFile(datafile)
+        if (not os.path.exists(datafile)) or (savetoFile==1):
+            with io.open(datafile, 'w', encoding='utf-8') as f:
+              f.write(unicode(result))
         return result
 
     def AddURL(self,reqData):

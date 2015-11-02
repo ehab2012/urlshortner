@@ -1,1 +1,0 @@
-location /425T { return 301 http://rrrrr; }
