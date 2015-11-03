@@ -6,4 +6,5 @@ Flask-Script
 
 # other
 shortuuid
+tinydb
 

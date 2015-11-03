@@ -54,7 +54,6 @@ class myModel:
     def getURLs(self,savetoFile=0):
         tmpObj= UrlObject()
         tmpObj.data=[]
-        #filesList=os.listdir(myModel.dirPath)
         filesList=glob.glob(myModel.dirPath + "/*.loc")
         for f in filesList:
             f=os.path.join(os.path.sep, myModel.dirPath , f)
@@ -64,6 +63,7 @@ class myModel:
         if (not os.path.exists(datafile)) or (savetoFile==1):
             with io.open(datafile, 'w', encoding='utf-8') as f:
               f.write(unicode(result))
+            return ""
         return result
 
     def AddURL(self,reqData):
@@ -91,20 +91,5 @@ class myModel:
             if os.path.exists(filename):
                 status_code = 200
                 os.remove(filename)
+        myModel.getURLs(self,1)
         return status_code
-
-# jsonify({'data': os.listdir(dirPath)});
-
-
-
-#        if not os.path.exists(datafile):
-           #savetoFile=1
-        #if savetoFile==1:
-"""
-with io.open(datafile, 'w', encoding='utf-8') as outfile:
-    outfile.write(result)
-"""
-#with open(datafile, 'w') as fp:
-#    json.dump(tmpObj.to_JSON(), fp)
-
-
