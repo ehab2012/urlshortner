@@ -1,0 +1,1 @@
+location /board { return 301 http://google.com; }

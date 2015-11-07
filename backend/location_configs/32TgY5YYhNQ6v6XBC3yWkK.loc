@@ -1,1 +1,0 @@
-location /5M { return 301 http://phone.cloud.thingworx.com/LTPhoneApp/?t=phoneThing1446202589779; }

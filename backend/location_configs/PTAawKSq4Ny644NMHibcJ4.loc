@@ -1,0 +1,1 @@
+location /blood { return 301 http://menu/uuu; }
