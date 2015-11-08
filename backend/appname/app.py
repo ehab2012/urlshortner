@@ -15,6 +15,7 @@ if not os.path.exists(LOCATION_DIR):
     os.makedirs(LOCATION_DIR)
 
 m = myModel(LOCATION_DIR)
+m.getURLs(1)
 
 @app.route('/api/urls/isAlive')
 def isAlive():

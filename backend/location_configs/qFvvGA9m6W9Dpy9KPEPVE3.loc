@@ -1,1 +1,0 @@
-location /hear { return 301 http://wwwwwwwww; }

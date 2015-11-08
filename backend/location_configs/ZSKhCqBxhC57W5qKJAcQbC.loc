@@ -1,1 +1,0 @@
-location /female { return 301 http://qwqwqwqwqwqw; }

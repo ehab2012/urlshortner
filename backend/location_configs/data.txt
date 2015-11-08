@@ -1,1 +1,0 @@
-{"data": [{"short": "existence", "long": "http://swewewewewe"}, {"short": "discussion", "long": "http://dddd"}, {"short": "female", "long": "http://qwqwqwqwqwqw"}, {"short": "hear", "long": "http://wwwwwwwww"}, {"short": "blood", "long": "http://menu/uuu"}, {"short": "board", "long": "http://google.com"}]}
