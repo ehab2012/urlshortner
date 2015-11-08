@@ -1,0 +1,1 @@
+location /discussion { return 301 http://dddd; }

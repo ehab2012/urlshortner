@@ -1,0 +1,11 @@
+localhost:2020
+gzip
+browse
+ext .html
+websocket /echo cat
+log ../access.log
+header / {
+    Access-Control-Allow-Origin  *
+    Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    -Server
+}

@@ -45,8 +45,10 @@ class EError(Exception):
 
 class myModel:
     dirPath =""
+    filename =""
     def __init__(self, DirPath):
        self.dirPath = DirPath
+       self.filename = os.path.join(os.path.sep, DirPath ,"words.slv")
 
     def isAlive(self):
         return "url shorter is alive"
@@ -59,7 +61,7 @@ class myModel:
             f=os.path.join(os.path.sep, self.dirPath , f)
             tmpObj.data.append(tmpObj.get_details(f))
         result = tmpObj.to_JSON()
-        datafile=os.path.join(os.path.sep, self.dirPath,"data.txt")
+        datafile=os.path.join(os.path.sep, self.dirPath,"data.json")
         if (not os.path.exists(datafile)) or (savetoFile==1):
             with io.open(datafile, 'w', encoding='utf-8') as f:
               f.write(unicode(result))
@@ -67,10 +69,9 @@ class myModel:
         return result
 
     def getShortWord(self,longurl):
-        filename=os.path.join(os.path.sep, self.dirPath ,"words.slv")
         result=""
-        if os.path.exists(filename):
-            d = shelve.open(filename , writeback=True)
+        if os.path.exists(self.filename):
+            d = shelve.open(self.filename , writeback=True)
             for key, value in d.iteritems():
                 result=key
                 if d[key]["free"]==0:
@@ -79,6 +80,17 @@ class myModel:
                     break
             d.close()
         return result
+
+    def freeShortWord(self,longurl):
+        if os.path.exists(self.filename):
+            d = shelve.open(self.filename , writeback=True)
+            for key, value in d.iteritems():
+                if d[key]["longurl"]==longurl:
+                    d[key]["longurl"]=""
+                    d[key]["free"]=0
+                    break
+            d.close()
+        return
 
     def AddURL(self,reqData):
         status_code=400

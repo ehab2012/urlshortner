@@ -1,0 +1,1 @@
+location /existence { return 301 http://swewewewewe; }

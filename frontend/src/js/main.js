@@ -1,7 +1,7 @@
 // api url definations
 APIURL = "http://127.0.0.1:5000/api/urls"
 //APIURL = "http://l.tryme.xyz/api/urls"
-DATAURL="../data"
+DATAURL="files/data.json"
 SHORTURLDOMAIN = "http://l.tryme.xyz/"
 
 $(document).ready(function () {
@@ -18,15 +18,13 @@ $(document).ready(function () {
             $("#div_backendOffline").slideDown();
         }
     });
-
     getUrls();
 });
-
 
 function getUrls()
 {
     var table = $('#table_dataTables').DataTable({
-        "ajax": APIURL,
+        "ajax": DATAURL,
         "columns": [
             {"data": "short"},
             {"data": "long"}
@@ -124,6 +122,10 @@ $("#fromUrl").submit(function (event) {
 	return false; // avoid to execute the actual submit of the form.
 });
 
+$( "#input_longurl" ).keypress(function() {
+	if($('#input_shortUrl').val().length>0)
+		$('#input_shortUrl').val("");
+});
 
 // disable editing in input_shortUrl
 $('#input_shortUrl').click(function (e) {
@@ -180,8 +182,6 @@ function DeleteUrls() {
 	if (arr_tmpDel.length === 0)
 		return;
 
-    $("#fromUrl").trigger('reset');
-
 	$.ajax({
 		type: "POST",
 		url: APIURL + "/delete",
@@ -209,7 +209,6 @@ function DeleteUrls() {
 				$(".alert-success").slideUp();
                 $(".alert-danger").slideUp();
 			}, 2000);
-
 		},
 		error: function (json) {
 			//  $.mockjax.clear();
