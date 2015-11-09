@@ -1,6 +1,6 @@
 // api url definations
-APIURL = "http://127.0.0.1:5000/api/urls"
-//APIURL = "http://l.tryme.xyz/api/urls"
+//APIURL = "http://127.0.0.1:5000/api/urls"
+APIURL = "http://l.tryme.xyz/api/urls"
 DATAURL="files/data.json"
 SHORTURLDOMAIN = "http://l.tryme.xyz/"
 
@@ -25,6 +25,17 @@ function getUrls()
 {
     var table = $('#table_dataTables').DataTable({
         "ajax": DATAURL,
+
+/*
+    trap the errors here by setting data to nothing
+
+ "ajax": function (data, callback, settings) {
+ callback(
+ JSON.parse( localStorage.getItem('dataTablesData') )
+ );
+ }
+         */
+
         "columns": [
             {"data": "short"},
             {"data": "long"}

@@ -1,1 +1,0 @@
-location /addition { return 301 hotmail.com; }

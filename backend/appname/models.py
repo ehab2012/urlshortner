@@ -19,6 +19,8 @@ class UrlObject:
 
     # location /bb2 { return 301 http://www.hotmail.com; }
     def get_details(self,filename):
+        print "jjjjjjjjjjjjj"
+	print filename
         with open(filename, 'r') as f:
             first_line = f.readline()
             m = re.search('^location\s+/(\w+)\s+\{\s+return\s+\d+\s+(.*)?;\s+', first_line)
@@ -57,6 +59,9 @@ class myModel:
         tmpObj= UrlObject()
         tmpObj.data=[]
         filesList=glob.glob(self.dirPath + "/*.loc")
+	print "--------------------------"
+	print filesList
+	print "--------------------------"	
         for f in filesList:
             f=os.path.join(os.path.sep, self.dirPath , f)
             tmpObj.data.append(tmpObj.get_details(f))
