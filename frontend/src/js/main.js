@@ -25,17 +25,6 @@ function getUrls()
 {
     var table = $('#table_dataTables').DataTable({
         "ajax": DATAURL,
-
-/*
-    trap the errors here by setting data to nothing
-
- "ajax": function (data, callback, settings) {
- callback(
- JSON.parse( localStorage.getItem('dataTablesData') )
- );
- }
-         */
-
         "columns": [
             {"data": "short"},
             {"data": "long"}

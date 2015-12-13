@@ -13,21 +13,21 @@ jQuery(function () {
 					// requestSettings.headers["Authentication"] === "some-token"
 					if (1) {
 						this.dataType = "json",
-						this.contentType = "text/json",
+							this.contentType = "text/json",
 							//this.proxy= '/mocks/data.json',  // returns json file
 							//  isTimeout: true
-						this.responseTime= 750,  // make them wait
-						this.responseText = {
-                                shorturl: SHORTURL + Math.floor((Math.random() * 100) + 1),
-                                longurl :requestSettings.data["longurl"],
-                                user: { id: 13 }
-                            },
-						this.status = 200;
-                            // this.headers = { etag: 'xyz123'  }
+							this.responseTime = 750,  // make them wait
+							this.responseText = {
+								shorturl: SHORTURL + Math.floor((Math.random() * 100) + 1),
+								longurl: requestSettings.data["longurl"],
+								user: {id: 13}
+							},
+							this.status = 200;
+						// this.headers = { etag: 'xyz123'  }
 					} else {
-						this.responseTime= 750,  // make them wait
-						this.responseText = "failed generating short url!" ,
-						this.status = 403;
+						this.responseTime = 750,  // make them wait
+							this.responseText = "failed generating short url!" ,
+							this.status = 403;
 					}
 				}
 			};
@@ -37,23 +37,23 @@ jQuery(function () {
 	});
 
 
-    $.mockjax({
-        url: APIURL,
-        type :"GET",
-        responseText: {
-            status: "success",
-            fortune: "Are you a mock turtle?"
-        }
-    });
+	$.mockjax({
+		url: APIURL,
+		type: "GET",
+		responseText: {
+			status: "success",
+			fortune: "Are you a mock turtle?"
+		}
+	});
 
-    $.mockjax({
-        url: APIURL,
-        type :"DELETE",
-        status: 404,
-        responseText: {
-            status: "success",
-            fortune: "gets the thingy"
-        }
-    });
+	$.mockjax({
+		url: APIURL,
+		type: "DELETE",
+		status: 404,
+		responseText: {
+			status: "success",
+			fortune: "gets the thingy"
+		}
+	});
 
 });

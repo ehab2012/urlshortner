@@ -1,0 +1,1 @@
+location /apple { return 301 dddd; }
